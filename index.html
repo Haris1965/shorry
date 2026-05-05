@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sunflower Bouquet for Nayyab 🌻💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fff7e8 0%, #fde9ce 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Quicksand', system-ui, 'Poppins', sans-serif;
+            padding: 24px;
+        }
+
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 248, 235, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 68px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(253, 216, 94, 0.3);
+            padding: 28px 20px 40px 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: rgba(255, 245, 210, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #ffd966;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 10;
+            font-weight: 500;
+        }
+        .music-control:hover {
+            background: #ffe6b3;
+            transform: scale(1.02);
+        }
+        .music-icon {
+            font-size: 1.5rem;
+        }
+        .music-status {
+            font-size: 0.8rem;
+            color: #8b5a2b;
+        }
+
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0 5px;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 48px;
+            filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.15));
+            transition: transform 0.2s ease;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        
+        canvas:active {
+            transform: scale(0.98);
+        }
+
+        .message-box {
+            background: #fffaf0;
+            border-radius: 48px;
+            padding: 24px 28px;
+            margin: 18px 20px 0 20px;
+            box-shadow: 0 8px 14px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,240,0.9);
+            border: 1px solid #ffe1a0;
+        }
+
+        .greeting {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5a623, #f7d44a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .heartfelt {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #5e3a1c;
+            font-weight: 500;
+            margin: 12px 0 8px;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #b87c3a;
+            border-top: 1px dashed #ffda99;
+            padding-top: 16px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .sunflower-emoji {
+            font-size: 1.6rem;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 550px) {
+            .message-box {
+                margin: 12px 8px 0 8px;
+                padding: 18px 16px;
+            }
+            .greeting { font-size: 1.8rem; }
+            .heartfelt { font-size: 1rem; }
+            .card { padding: 18px 12px 32px 12px; }
+            .music-control { top: 12px; right: 12px; padding: 5px 12px; }
+        }
+        
+        .message-box {
+            animation: gentleFloat 3s ease-in-out infinite alternate;
+        }
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-3px); }
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="music-control" id="musicControl">
+        <span class="music-icon">🎵</span>
+        <span class="music-status" id="musicStatus">Music off</span>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="sunflowerCanvas" width="700" height="650" aria-label="Beautiful sunflower bouquet with tiny flowers"></canvas>
+    </div>
+    <div class="message-box">
+        <div class="greeting">
+            <span class="sunflower-emoji">🌻</span> For Nayyab, with all my heart <span class="sunflower-emoji">🌻</span>
+        </div>
+        <div class="heartfelt">
+            Mera bachaaw, I know you're angry with me right now, and you have every right to be.<br>
+            I'm truly sorry for hurting you. I made this sunflower bouquet as a small peace offering,<br>
+            because even when we argue, you're still the most important person in my world.<br>
+            <strong>Please forgive me.</strong> I miss your smile, and I promise to listen better and do better.<br>
+            Take your time, but know that I love you more than all these sunflowers combined.
+        </div>
+        <div class="signature">
+            💛 Yours, even when we're not okay — and hoping to make it right 💛
+        </div>
+    </div>
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+    <!-- CHANGE THE "src" TO YOUR MUSIC FILE NAME (keep in same folder) -->
+    <source src="sunflower-melody.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    (function() {
+        // ---------- CANVAS SETUP ----------
+        const canvas = document.getElementById('sunflowerCanvas');
+        const ctx = canvas.getContext('2d');
+        const width = 700, height = 650;
+        canvas.width = width;
+        canvas.height = height;
+        
+        // ---------- FLOWER ARRANGEMENT (BOUQUET) ----------
+        let flowers = [];
+        
+        function buildFlowerArrangement() {
+            const newFlowers = [];
+            
+            // Main large sunflowers
+            const mainFlowers = [
+                { x: 240, y: 270, size: 1.0, phase: 0.0 },
+                { x: 350, y: 240, size: 1.15, phase: 1.2 },
+                { x: 460, y: 280, size: 0.95, phase: 2.5 },
+                { x: 300, y: 310, size: 0.85, phase: 3.1 },
+                { x: 410, y: 320, size: 0.88, phase: 0.7 }
+            ];
+            for (let f of mainFlowers) {
+                newFlowers.push({ type: 'sunflower', x: f.x, y: f.y, sizeScale: f.size, phaseOffset: f.phase });
+            }
+            
+            // Tiny sunflowers (many)
+            const tinyCount = 38;
+            for (let i = 0; i < tinyCount; i++) {
+                let angle = Math.random() * Math.PI * 2;
+                let radius = 50 + Math.random() * 150;
+                let x = 350 + Math.cos(angle) * radius;
+                let y = 260 + Math.sin(angle) * radius * 0.7 - 20;
+                x = Math.min(650, Math.max(50, x));
+                y = Math.min(450, Math.max(150, y));
+                newFlowers.push({
+                    type: 'tinySunflower',
+                    x: x, y: y,
+                    sizeScale: 0.28 + Math.random() * 0.2,
+                    phaseOffset: Math.random() * Math.PI * 2,
+                });
+            }
+            
+            // Other accent flowers
+            const accentCount = 28;
+            for (let i = 0; i < accentCount; i++) {
+                let angle = Math.random() * Math.PI * 2;
+                let radius = 40 + Math.random() * 170;
+                let x = 350 + Math.cos(angle) * radius;
+                let y = 255 + Math.sin(angle) * radius * 0.8;
+                x = Math.min(670, Math.max(30, x));
+                y = Math.min(470, Math.max(120, y));
+                let type = (Math.random() > 0.6) ? 'daisy' : 'lavenderStar';
+                newFlowers.push({
+                    type: type, x: x, y: y,
+                    sizeScale: 0.22 + Math.random() * 0.18,
+                    phaseOffset: Math.random() * Math.PI * 2,
+                });
+            }
+            return newFlowers;
+        }
+        
+        // Stems and ribbon
+        function drawStemsAndRibbon() {
+            const bundleX = 350, bundleY = 540;
+            for (let f of flowers) {
+                let startX = f.x;
+                let startY = f.y + (f.type === 'sunflower' ? 18 : 8);
+                let endX = bundleX + (Math.random() - 0.5) * 18;
+                let endY = bundleY - 5 + (Math.random() - 0.5) * 12;
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.quadraticCurveTo((startX + endX)/2 + 4, (startY + endY)/2 + 8, endX, endY);
+                ctx.lineWidth = 2.2;
+                ctx.strokeStyle = '#5b8c3a';
+                ctx.stroke();
+                ctx.lineWidth = 1.5;
+                ctx.strokeStyle = '#3c6622';
+                ctx.stroke();
+            }
+            ctx.save();
+            ctx.shadowBlur = 0;
+            ctx.beginPath();
+            ctx.ellipse(bundleX, bundleY, 18, 12, 0, 0, Math.PI*2);
+            ctx.fillStyle = '#e6b87a';
+            ctx.fill();
+            ctx.fillStyle = '#c98f4b';
+            ctx.beginPath();
+            ctx.ellipse(bundleX-3, bundleY-1, 6, 8, -0.3, 0, Math.PI*2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.ellipse(bundleX+3, bundleY-1, 6, 8, 0.3, 0, Math.PI*2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(bundleX-8, bundleY+2);
+            ctx.quadraticCurveTo(bundleX-22, bundleY+14, bundleX-18, bundleY+28);
+            ctx.lineTo(bundleX-10, bundleY+18);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(bundleX+8, bundleY+2);
+            ctx.quadraticCurveTo(bundleX+24, bundleY+12, bundleX+20, bundleY+26);
+            ctx.lineTo(bundleX+12, bundleY+16);
+            ctx.fill();
+            ctx.restore();
+        }
+        
+        // Drawing functions for flowers
+        function drawSunflowerAt(x, y, sizeScale, timeOffset, isTiny = false) {
+            const petalCount = isTiny ? 12 : 16;
+            const innerRadius = (isTiny ? 9 : 20) * sizeScale;
+            const petalLength = (isTiny ? 14 : 32) * sizeScale;
+            const petalWidth = (isTiny ? 5 : 11) * sizeScale;
+            const now = performance.now() / 1000;
+            const sway = Math.sin(now * 1.5 + timeOffset) * 0.2;
+            for (let i = 0; i < petalCount; i++) {
+                const angle = (i / petalCount) * Math.PI * 2;
+                const px = x + Math.cos(angle) * (innerRadius + 2);
+                const py = y + Math.sin(angle) * (innerRadius + 2);
+                ctx.save();
+                ctx.translate(px, py);
+                ctx.rotate(angle + sway * 0.7);
+                ctx.beginPath();
+                ctx.ellipse(0, petalLength * 0.7, petalWidth, petalLength, 0, 0, Math.PI * 2);
+                const grad = ctx.createLinearGradient(-petalWidth/2, 0, petalWidth/2, petalLength);
+                grad.addColorStop(0, '#FFE484');
+                grad.addColorStop(1, '#F3A712');
+                ctx.fillStyle = grad;
+                ctx.fill();
+                ctx.strokeStyle = '#D78A1A';
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+                ctx.restore();
+            }
+            ctx.beginPath();
+            ctx.arc(x, y, innerRadius, 0, Math.PI * 2);
+            const gradCenter = ctx.createRadialGradient(x-3, y-3, 3, x, y, innerRadius);
+            gradCenter.addColorStop(0, '#8B5A2B');
+            gradCenter.addColorStop(0.8, '#5A3516');
+            ctx.fillStyle = gradCenter;
+            ctx.fill();
+            ctx.fillStyle = '#DFB87A';
+            for (let s = 0; s < (isTiny ? 20 : 55); s++) {
+                const r = Math.random() * (innerRadius - 2);
+                const a = Math.random() * Math.PI * 2;
+                const dx = x + Math.cos(a) * r;
+                const dy = y + Math.sin(a) * r;
+                ctx.beginPath();
+                ctx.arc(dx, dy, (isTiny ? 0.8 : 1.2) * sizeScale, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+        
+        function drawDaisyAt(x, y, sizeScale, timeOffset) {
+            const petalCount = 8;
+            const radius = 9 * sizeScale;
+            const petalLen = 14 * sizeScale;
+            const now = performance.now() / 1000;
+            const wiggle = Math.sin(now * 1.8 + timeOffset) * 0.15;
+            for (let i = 0; i < petalCount; i++) {
+                const angle = (i / petalCount) * Math.PI * 2 + wiggle;
+                const px = x + Math.cos(angle) * radius;
+                const py = y + Math.sin(angle) * radius;
+                ctx.save();
+                ctx.translate(px, py);
+                ctx.rotate(angle);
+                ctx.beginPath();
+                ctx.ellipse(0, petalLen * 0.6, 4 * sizeScale, petalLen, 0, 0, Math.PI*2);
+                ctx.fillStyle = '#FFF3CF';
+                ctx.fill();
+                ctx.fillStyle = '#FFE5B4';
+                ctx.fill();
+                ctx.restore();
+            }
+            ctx.beginPath();
+            ctx.arc(x, y, 6 * sizeScale, 0, Math.PI*2);
+            ctx.fillStyle = '#FAC05E';
+            ctx.fill();
+            ctx.fillStyle = '#E0A23B';
+            ctx.beginPath();
+            ctx.arc(x-1, y-1, 2*sizeScale, 0, Math.PI*2);
+            ctx.fill();
+        }
+        
+        function drawLavenderStarAt(x, y, sizeScale, timeOffset) {
+            const points = 5;
+            const outerR = 8 * sizeScale;
+            const innerR = 3 * sizeScale;
+            const now = performance.now() / 1000;
+            const rot = Math.sin(now * 2 + timeOffset) * 0.2;
+            ctx.beginPath();
+            for (let i = 0; i < points * 2; i++) {
+                const rad = (i % 2 === 0) ? outerR : innerR;
+                const angle = (i * Math.PI) / points + rot;
+                const dx = x + Math.cos(angle) * rad;
+                const dy = y + Math.sin(angle) * rad;
+                if (i === 0) ctx.moveTo(dx, dy);
+                else ctx.lineTo(dx, dy);
+            }
+            ctx.closePath();
+            ctx.fillStyle = '#C9A9F0';
+            ctx.fill();
+            ctx.fillStyle = '#B183E0';
+            ctx.beginPath();
+            ctx.arc(x, y, 3*sizeScale, 0, Math.PI*2);
+            ctx.fill();
+        }
+        
+        // Particles and background
+        let particles = [];
+        const PARTICLE_COUNT = 45;
+        class Particle {
+            constructor(x, y, vx, vy, radius, color, alpha) {
+                this.x = x; this.y = y; this.vx = vx; this.vy = vy;
+                this.radius = radius; this.color = color; this.alpha = alpha;
+            }
+        }
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const radius = 1.5 + Math.random() * 4;
+                let x = 100 + Math.random() * (width - 200);
+                let y = 80 + Math.random() * (height - 150);
+                const vx = (Math.random() - 0.5) * 0.5;
+                const vy = (Math.random() - 0.5) * 0.4 - 0.2;
+                const colors = ['#FFD966', '#FFB347', '#F9E076', '#FADB67'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, vx, vy, radius, color, 0.5 + Math.random()*0.4));
+            }
+        }
+        function updateParticles() {
+            for (let p of particles) {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x - p.radius < 2) { p.x = 2 + p.radius; p.vx = -p.vx * 0.9; }
+                if (p.x + p.radius > width - 2) { p.x = width - 2 - p.radius; p.vx = -p.vx * 0.9; }
+                if (p.y - p.radius < 10) { p.y = 10 + p.radius; p.vy = -p.vy * 0.9; }
+                if (p.y + p.radius > height - 30) { p.y = height - 30 - p.radius; p.vy = -p.vy * 0.9; }
+                if (Math.random() < 0.02) {
+                    p.vx += (Math.random() - 0.5) * 0.2;
+                    p.vy += (Math.random() - 0.5) * 0.15;
+                }
+            }
+        }
+        function drawParticles() {
+            for (let p of particles) {
+                ctx.save();
+                ctx.globalAlpha = p.alpha * 0.7;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = "#ffd58c";
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                ctx.restore();
+            }
+        }
+        function drawBackground() {
+            const grad = ctx.createLinearGradient(0, 0, 0, height);
+            grad.addColorStop(0, '#fef3d6');
+            grad.addColorStop(0.7, '#fcebbc');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalAlpha = 0.2;
+            ctx.fillStyle = '#ffeecc';
+            ctx.beginPath();
+            ctx.ellipse(350, 180, 180, 140, 0, 0, Math.PI*2);
+            ctx.fill();
+            ctx.globalAlpha = 0.1;
+            ctx.beginPath();
+            ctx.ellipse(580, 500, 100, 60, 0, 0, Math.PI*2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
+        function drawExtraSparkles(nowSec) {
+            for (let i = 0; i < 15; i++) {
+                let angle = nowSec * 1.5 + i;
+                let x = 320 + Math.sin(angle) * 120;
+                let y = 200 + Math.cos(angle * 1.3) * 90;
+                ctx.beginPath();
+                ctx.arc(x + Math.sin(angle*2)*6, y + Math.cos(angle*1.8)*4, 2 + Math.sin(angle*5)*1, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(255, 210, 90, ${0.4 + Math.sin(angle)*0.2})`;
+                ctx.fill();
+            }
+        }
+        
+        // Animation loop
+        let animationId = null;
+        let startTime = performance.now() / 1000;
+        function animate() {
+            const nowSec = (performance.now() / 1000) - startTime;
+            drawBackground();
+            drawStemsAndRibbon();
+            for (let f of flowers) {
+                ctx.save();
+                if (f.type === 'sunflower') drawSunflowerAt(f.x, f.y, f.sizeScale, f.phaseOffset, false);
+                else if (f.type === 'tinySunflower') drawSunflowerAt(f.x, f.y, f.sizeScale, f.phaseOffset, true);
+                else if (f.type === 'daisy') drawDaisyAt(f.x, f.y, f.sizeScale, f.phaseOffset);
+                else if (f.type === 'lavenderStar') drawLavenderStarAt(f.x, f.y, f.sizeScale, f.phaseOffset);
+                ctx.restore();
+            }
+            updateParticles();
+            drawParticles();
+            drawExtraSparkles(nowSec);
+            ctx.fillStyle = 'rgba(255,245,200,0.5)';
+            for (let i=0;i<30;i++) {
+                let randX = 200 + Math.random() * 300;
+                let randY = 150 + Math.random() * 250;
+                ctx.beginPath();
+                ctx.arc(randX, randY, 1.2, 0, Math.PI*2);
+                ctx.fill();
+            }
+            animationId = requestAnimationFrame(animate);
+        }
+        function start() {
+            flowers = buildFlowerArrangement();
+            initParticles();
+            startTime = performance.now() / 1000;
+            if (animationId) cancelAnimationFrame(animationId);
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Music controller (unchanged)
+        const audio = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
+        const musicStatusSpan = document.getElementById('musicStatus');
+        let musicPlaying = false;
+        function updateMusicUI() {
+            if (musicPlaying) {
+                musicStatusSpan.textContent = 'Melody ♪';
+                musicControl.style.background = "#ffe6b3";
+            } else {
+                musicStatusSpan.textContent = 'Music off';
+                musicControl.style.background = "rgba(255, 245, 210, 0.9)";
+            }
+        }
+        function playMusic() {
+            audio.play().then(() => { musicPlaying = true; updateMusicUI(); }).catch(() => { musicPlaying = false; updateMusicUI(); });
+        }
+        function pauseMusic() {
+            audio.pause();
+            musicPlaying = false;
+            updateMusicUI();
+        }
+        function toggleMusic() {
+            if (musicPlaying) pauseMusic();
+            else playMusic();
+        }
+        musicControl.addEventListener('click', toggleMusic);
+        canvas.addEventListener('click', () => { if (!musicPlaying) playMusic(); });
+        window.addEventListener('load', () => {
+            start();
+            audio.volume = 0.55;
+            audio.loop = true;
+            playMusic();
+        });
+    })();
+</script>
+</body>
+</html>
